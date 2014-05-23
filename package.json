@@ -1,6 +1,6 @@
 {
     "name": "multiget",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "multi get request",
     "keywords" : [
         "get",
@@ -20,6 +20,9 @@
     },
     "dependencies": {
         "vow": "*"
+    },
+    "peerDependencies": {
+        "express": "4.x"
     },
     "devDependencies": {
         "mocha": "*",
