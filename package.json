@@ -1,0 +1,32 @@
+{
+    "name": "multiget",
+    "version": "0.0.1",
+    "description": "multi get request",
+    "keywords" : [
+        "get",
+        "http",
+        "express",
+        "middleware"
+    ],
+    "author": {
+        "name": "Evgeniy Filatov"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wtfil/multiget"
+    },
+    "scripts": {
+        "test": "npm install --save-dev && ./node_modules/.bin/mocha index.test.js"
+    },
+    "dependencies": {
+        "vow": "*"
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "express": "4.x"
+    },
+    "main": "index",
+    "engines": {
+        "node": "*"
+    }
+}
