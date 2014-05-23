@@ -1,6 +1,6 @@
 {
     "name": "multiget",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "multi get request",
     "keywords" : [
         "get",
@@ -19,13 +19,13 @@
         "test": "npm install --save-dev && ./node_modules/.bin/mocha index.test.js"
     },
     "dependencies": {
-        "vow": "*"
+        "vow": "0.4.3"
     },
     "peerDependencies": {
         "express": "4.x"
     },
     "devDependencies": {
-        "mocha": "*",
+        "mocha": "1.19.x",
         "express": "4.x"
     },
     "main": "index",
