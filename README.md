@@ -8,7 +8,7 @@ multiget — [express](https://github.com/visionmedia/express) middleware that a
 
 ## API
 
-###multiget(<api host>) — creates middleware
+###multiget(apiHost) — creates middleware
 
 ## Example
 
@@ -17,13 +17,18 @@ var express = require('express'),
     multiget = require('multiget'),
     app = express();
 
-app.use(multiget('http://localhost:3001'));
+app.use(multiget('http://localhost:4000'));
 app.listen(3000);
 ```
 
 ## Response format
 
-for query ```api/multi?key1=api1&key2=api2```  responce will:
+Calling ```GET http://localhost:3000/api/multi?key1=api1&key2=api2```  for example above will made following requests:
+
+    GET http://localhost:4000/api1
+    GET http://localhost:4000/api2
+
+and will combine responces into one:
 
 ```js
 {
