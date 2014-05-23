@@ -43,6 +43,8 @@ and will combine responces into one:
 }
 ```
 
+if API will set ```content-type``` to ```application/json``` the middleware will trying to parse response
+
 fields ```error``` and ```result``` are mutually exclusive
 
 ## Tests

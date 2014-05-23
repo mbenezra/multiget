@@ -5,7 +5,7 @@ var multiget = require('./'),
     express = require('express');
 
 function apiMiddleware(req, res) {
-    var match = req.url.match(/api\/(users|customers|countries|error)\/?(?:\:(\d+))?/);
+    var match = req.url.match(/api\/(users|countries|json|error)\/?(?:\:(\d+))?/);
 
     if (!match) {
         res.writeHead(404);
@@ -18,6 +18,14 @@ function apiMiddleware(req, res) {
     if (handle === 'error') {
         res.writeHead(500);
         return res.end();
+    }
+
+    if (handle == 'json') {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        return res.end(JSON.stringify({
+            foo: 'bar',
+            arr: [1, 2, 3]
+        }));
     }
 
     if (id) {
@@ -96,6 +104,21 @@ describe('middleware', function () {
                 var data = JSON.parse(responce.body);
                 assert.equal(data.users.result, 'users_*');
                 assert.equal(data['maybe-error'].error, 'API error: Internal Server Error');
+                done();
+            });
+        });
+
+        it('should work when api returns JSON', function (done) {
+            httpGet('api/multi?users=api/users&json=api/json', function (responce) {
+                assert.equal(responce.statusCode, 200);
+
+                var data = JSON.parse(responce.body);
+
+                assert.equal(data.users.result, 'users_*');
+
+                var json = data.json.result;
+                assert.equal(json.foo, 'bar');
+                assert.deepEqual(json.arr, [1, 2, 3]);
                 done();
             });
         });

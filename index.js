@@ -18,7 +18,17 @@ function httpGet(url, callback) {
                     chunks.push(chunk);
                 })
                 .on('end', function () {
-                    callback(null, Buffer.concat(chunks).toString('utf8'));
+                    var body = Buffer.concat(chunks).toString('utf8');
+
+                    if (res.headers['content-type'] === 'application/json') {
+                        try {
+                            body = JSON.parse(body);
+                        } catch(e) {
+                            return callback(e);
+                        }
+                    }
+
+                    callback(null, body);
                 });
         })
         .on('error', callback);
@@ -55,7 +65,6 @@ module.exports = function (apiHost) {
                 res.end(JSON.stringify(responces));
             })
             .fail(function (e) {
-                console.log(e);
                 res.writeHead(503);
                 res.end(e.stack);
             });
