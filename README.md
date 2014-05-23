@@ -44,3 +44,7 @@ and will combine responces into one:
 ```
 
 fields ```error``` and ```result``` are mutually exclusive
+
+## Tests
+
+    npm test
