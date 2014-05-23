@@ -3,6 +3,16 @@ var parseUrl = require('url').parse,
     vow = require('vow'),
     QUERY_START = '/api/multi';
 
+/**
+ * Making http GET request
+ *
+ * @param {String} url
+ *
+ * @param {Function(error, body)} callback
+ * @param {Error|Null} callback.error
+ * @param {String|Object} callback.body
+ *
+ */
 function httpGet(url, callback) {
     http
         .get(url, function (res) {
@@ -34,6 +44,16 @@ function httpGet(url, callback) {
         .on('error', callback);
 }
 
+/**
+ * Creates middleware
+ *
+ * @param {String} apiHost
+ *
+ * @returns {Function(req, res, next)} middleware
+ * @returns {http.ClientRequest} middleware.req
+ * @returns {http.ServerResponse} middleware.res
+ * @returns {Function} middleware.next Next middleware
+ */
 module.exports = function (apiHost) {
 
     return function (req, res, next) {
